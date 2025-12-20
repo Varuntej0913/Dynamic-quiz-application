@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster - Dashboard</title>
+    <meta name="description" content="Your quiz dashboard with available quizzes and performance tracking">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dashboard-body">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg viewBox="0 0 50 50" width="40" height="40">
+                    <circle cx="25" cy="25" r="20" fill="url(#grad2)" />
+                    <path d="M 20 20 L 30 25 L 20 30 Z" fill="white" />
+                    <defs>
+                        <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="brand-name">QuizMaster</span>
+            </div>
+
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link" id="myResultsLink">My Results</a>
+                <a href="create-quiz.html" class="nav-link">Create Quiz</a>
+            </div>
+
+            <div class="nav-user">
+                <div class="user-info">
+                    <span class="user-name" id="userName">User</span>
+                    <div class="user-avatar" id="userAvatar">U</div>
+                </div>
+                <button class="btn btn-secondary btn-small" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <div class="container">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Welcome back, <span id="heroName">User</span>! 👋</h1>
+                    <p class="hero-subtitle">Ready to challenge yourself with a new quiz?</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalQuizzesAttempted">0</div>
+                        <div class="stat-label">Quizzes Attempted</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="averageScore">0%</div>
+                        <div class="stat-label">Average Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="bestScore">0%</div>
+                        <div class="stat-label">Best Score</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Builder Section -->
+            <section class="quizzes-section">
+                <div class="section-header">
+                    <h2 class="section-title">🎯 Take a Quiz</h2>
+                    <p style="color: var(--text-muted); margin-top: 0.5rem;">Select your preferences and start a quiz
+                        instantly!</p>
+                </div>
+
+                <div class="quiz-builder-card">
+                    <h3 class="quiz-builder-title">Create Your Quiz</h3>
+                    <p class="quiz-builder-subtitle">Choose from thousands of questions via Open Trivia Database</p>
+
+                    <div class="quiz-builder-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="apiCategory">Category</label>
+                                <select id="apiCategory" class="filter-select">
+                                    <option value="any">Any Category</option>
+                                    <option value="9">General Knowledge</option>
+                                    <option value="10">Books</option>
+                                    <option value="11">Film</option>
+                                    <option value="12">Music</option>
+                                    <option value="14">Television</option>
+                                    <option value="15">Video Games</option>
+                                    <option value="17">Science & Nature</option>
+                                    <option value="18">Computers</option>
+                                    <option value="19">Mathematics</option>
+                                    <option value="20">Mythology</option>
+                                    <option value="21">Sports</option>
+                                    <option value="22">Geography</option>
+                                    <option value="23">History</option>
+                                    <option value="27">Animals</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apiDifficulty">Difficulty</label>
+                                <select id="apiDifficulty" class="filter-select">
+                                    <option value="any">Any Difficulty</option>
+                                    <option value="easy">Easy</option>
+                                    <option value="medium">Medium</option>
+                                    <option value="hard">Hard</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="apiAmount">Number of Questions</label>
+                                <select id="apiAmount" class="filter-select">
+                                    <option value="5">5 Questions</option>
+                                    <option value="10" selected>10 Questions</option>
+                                    <option value="15">15 Questions</option>
+                                    <option value="20">20 Questions</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary btn-large" id="startApiQuiz">
+                            🚀 Start Quiz Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- My Custom Quizzes (Optional) -->
+                <div class="section-header" style="margin-top: 3rem;">
+                    <h2 class="section-title">My Custom Quizzes</h2>
+                    <div class="filter-controls">
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="General">General</option>
+                            <option value="Science">Science</option>
+                            <option value="Technology">Technology</option>
+                            <option value="History">History</option>
+                            <option value="Mathematics">Mathematics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="quizzes-grid" id="quizzesGrid">
+                    <!-- Loading State -->
+                    <div class="loading-state" id="loadingState">
+                        <div class="loader-spinner"></div>
+                        <p>Loading your quizzes...</p>
+                    </div>
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="empty-icon">📝</div>
+                    <h3>No Quizzes Available</h3>
+                    <p>Be the first to create a quiz!</p>
+                    <a href="create-quiz.html" class="btn btn-primary">Create Quiz</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Results Modal -->
+    <div class="modal" id="resultsModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>My Quiz Results</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="results-list" id="resultsList">
+                    <div class="loading-state">
+                        <div class="loader-spinner"></div>
+                        <p>Loading results...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

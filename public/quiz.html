@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster - Take Quiz</title>
+    <meta name="description" content="Take quiz and test your knowledge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="quiz-body">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg viewBox="0 0 50 50" width="40" height="40">
+                    <circle cx="25" cy="25" r="20" fill="url(#grad3)" />
+                    <path d="M 20 20 L 30 25 L 20 30 Z" fill="white" />
+                    <defs>
+                        <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="brand-name">QuizMaster</span>
+            </div>
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                <button class="btn-icon-nav exit-quiz-btn" id="exitQuizBtn" title="Exit Quiz">
+                    <span>✕</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Quiz Container -->
+    <main class="quiz-main">
+        <div class="quiz-container">
+            <!-- Quiz Header -->
+            <div class="quiz-header">
+                <div class="quiz-info">
+                    <h1 class="quiz-title" id="quizTitle">Loading Quiz...</h1>
+                    <p class="quiz-description" id="quizDescription"></p>
+                </div>
+                <div class="quiz-timer">
+                    <div class="timer-icon">⏱️</div>
+                    <div class="timer-display" id="timerDisplay">00:00</div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="quiz-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="currentQuestion">1</span> / <span id="totalQuestions">10</span>
+                </div>
+            </div>
+
+            <!-- Questions -->
+            <div class="quiz-content" id="quizContent">
+                <div class="loading-state">
+                    <div class="loader-spinner"></div>
+                    <p>Loading questions...</p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="quiz-navigation" id="quizNavigation" style="display: none;">
+                <button class="btn btn-secondary" id="prevBtn" disabled>Previous</button>
+                <button class="btn btn-primary" id="nextBtn">Next</button>
+                <button class="btn btn-success" id="submitBtn" style="display: none;">Submit Quiz</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Results Modal -->
+    <div class="modal active" id="resultsModal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content modal-large">
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="results-icon" id="resultsIcon">🎉</div>
+                    <h2 class="results-title" id="resultsTitle">Quiz Completed!</h2>
+                    <p class="results-subtitle">Here's how you performed</p>
+                </div>
+
+                <div class="results-score">
+                    <div class="score-circle">
+                        <svg viewBox="0 0 200 200" class="score-svg">
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#e5e7eb" stroke-width="12" />
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="url(#scoreGrad)" stroke-width="12"
+                                stroke-dasharray="565.48" stroke-dashoffset="0" id="scoreCircle"
+                                transform="rotate(-90 100 100)" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div class="score-text">
+                            <div class="score-value" id="scorePercentage">0%</div>
+                            <div class="score-label">Score</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-stats">
+                    <div class="result-stat">
+                        <div class="stat-icon correct">✓</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="correctCount">0</div>
+                            <div class="stat-label">Correct</div>
+                        </div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="stat-icon incorrect">✗</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="incorrectCount">0</div>
+                            <div class="stat-label">Incorrect</div>
+                        </div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="stat-icon time">⏱️</div>
+                        <div class="stat-info">
+                            <div class="stat-value" id="timeTaken">0:00</div>
+                            <div class="stat-label">Time Taken</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-actions">
+                    <button class="btn btn-secondary" id="reviewAnswers">Review Answers</button>
+                    <a href="dashboard.html" class="btn btn-primary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>

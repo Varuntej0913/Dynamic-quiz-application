@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizMaster - Create Quiz</title>
+    <meta name="description" content="Create your own quiz and share with others">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="create-quiz-body">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <svg viewBox="0 0 50 50" width="40" height="40">
+                    <circle cx="25" cy="25" r="20" fill="url(#grad4)" />
+                    <path d="M 20 20 L 30 25 L 20 30 Z" fill="white" />
+                    <defs>
+                        <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span class="brand-name">QuizMaster</span>
+            </div>
+
+            <div class="nav-user">
+                <a href="dashboard.html" class="btn btn-secondary btn-small">Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="create-main">
+        <div class="container">
+            <div class="create-header">
+                <h1 class="page-title">Create New Quiz</h1>
+                <p class="page-subtitle">Design an engaging quiz for your audience</p>
+            </div>
+
+            <form id="createQuizForm" class="create-form">
+                <!-- Quiz Details -->
+                <div class="form-section">
+                    <h2 class="section-heading">Quiz Details</h2>
+
+                    <div class="form-group">
+                        <label for="quizTitle">Quiz Title *</label>
+                        <input type="text" id="quizTitle" placeholder="e.g., JavaScript Fundamentals Quiz" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quizDescription">Description</label>
+                        <textarea id="quizDescription" rows="3" placeholder="Brief description of your quiz"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="quizCategory">Category *</label>
+                            <select id="quizCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="General">General Knowledge</option>
+                                <option value="Science">Science</option>
+                                <option value="Technology">Technology</option>
+                                <option value="History">History</option>
+                                <option value="Mathematics">Mathematics</option>
+                                <option value="Programming">Programming</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="quizTimeLimit">Time Limit (seconds) *</label>
+                            <input type="number" id="quizTimeLimit" value="600" min="60" max="3600" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Questions -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <h2 class="section-heading">Questions</h2>
+                        <button type="button" class="btn btn-secondary btn-small" id="addQuestionBtn">
+                            + Add Question
+                        </button>
+                    </div>
+
+                    <div id="questionsContainer">
+                        <!-- Questions will be added here dynamically -->
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='dashboard.html'">
+                        Cancel
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="submitQuizBtn">
+                        <span class="btn-text">Create Quiz</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                </div>
+
+                <div class="error-message" id="formError"></div>
+                <div class="success-message" id="formSuccess" style="display: none;"></div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Question Template -->
+    <template id="questionTemplate">
+        <div class="question-card">
+            <div class="question-header">
+                <h3 class="question-number">Question <span class="q-num">1</span></h3>
+                <button type="button" class="btn-icon delete-question" title="Delete Question">
+                    <span>🗑️</span>
+                </button>
+            </div>
+
+            <div class="form-group">
+                <label>Question Text *</label>
+                <input type="text" class="question-text" placeholder="Enter your question" required>
+            </div>
+
+            <div class="form-group">
+                <label>Options *</label>
+                <div class="options-container">
+                    <div class="option-item">
+                        <input type="radio" class="correct-answer" name="correct-0" value="0">
+                        <input type="text" class="option-text" placeholder="Option A" required>
+                        <span class="correct-label">Correct</span>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" class="correct-answer" name="correct-0" value="1">
+                        <input type="text" class="option-text" placeholder="Option B" required>
+                        <span class="correct-label">Correct</span>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" class="correct-answer" name="correct-0" value="2">
+                        <input type="text" class="option-text" placeholder="Option C" required>
+                        <span class="correct-label">Correct</span>
+                    </div>
+                    <div class="option-item">
+                        <input type="radio" class="correct-answer" name="correct-0" value="3">
+                        <input type="text" class="option-text" placeholder="Option D" required>
+                        <span class="correct-label">Correct</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="create-quiz.js"></script>
+</body>
+
+</html>
